@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo " ============ start building image ============ "
                 dir ('DockerBox') {
-                    sh 'docker build -t docker.build . '
+                    sh 'docker build -t docker.build:dktest . '
                 }
             }
         }
