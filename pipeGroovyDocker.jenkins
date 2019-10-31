@@ -15,7 +15,7 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============ start building image ============ "
-                dir ('DockerBox') {
+                dir ('DockerBox/awscli') {
                     sh 'docker build -t docker.build:dktest . '
                 }
             }
