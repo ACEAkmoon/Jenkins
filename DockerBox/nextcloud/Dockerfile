@@ -7,8 +7,8 @@ RUN apk add nextcloud-pgsql postgresql postgresql-client
 RUN /etc/init.d/postgresql setup && \
 	/etc/init.d/postgresql start
 RUN psql -U postgres && \
-	CREATE USER mycloud WITH PASSWORD 'test123';
-	ALTER ROLE mycloud CREATEDB;
+	CREATE USER mycloud WITH PASSWORD 'test123'; && \
+	ALTER ROLE mycloud CREATEDB; && \
 	\q
 
 #blocks the death of the container
