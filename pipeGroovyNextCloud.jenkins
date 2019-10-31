@@ -15,8 +15,8 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============ start building image ============ "
-                dir ('DockerBox') {
-                    sh 'docker build -t docker.build:dktest . '
+                dir ('DockerBox/nextcloud') {
+                    sh 'docker build -t nextcloud:dktest . '
                 }
             }
         }
