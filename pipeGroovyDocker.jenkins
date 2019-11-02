@@ -23,7 +23,7 @@ pipeline {
 		steps {
                 	echo " ============ start building image ============ "
                 	dir ('DockerBox/awscli') {
-				sh 'docker build -t docker.build:dktest . '
+				sh 'docker build -t all.images/docker.build:dktest . '
 			}	
 		}
 	}
