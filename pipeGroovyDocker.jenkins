@@ -30,7 +30,7 @@ pipeline {
     	stage("docker push") {
 		steps {
 			echo " ============== start pushing image =================="
-				sh '''docker.build:dktest'''
+				sh '''all.images/docker.build:dktest'''
 		}
 	}
     }
