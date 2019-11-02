@@ -3,13 +3,11 @@
 properties([disableConcurrentBuilds()])
 
 pipeline {
-    agent { 
-        label 'master'
-	}
+    agent { label 'master' }
     triggers { pollSCM('* * * * *') }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-        timestamps()
+    	buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+	timestamps()
     }
     stages {
     	stage("docker login") {
@@ -17,7 +15,8 @@ pipeline {
 			echo " ============== docker login =============== "
 			withCredentials([usernamePassword(credentialsId: 'dockerhub_aceakmoon', \
 			usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-			sh """docker login -u $USERNAME -p $PASSWORD"""
+					sh """docker login -u $USERNAME -p $PASSWORD"""
+				}
 			}
 		}
 	}
@@ -26,15 +25,16 @@ pipeline {
             steps {
                 echo " ============ start building image ============ "
                 dir ('DockerBox/awscli') {
-                    sh 'docker build -t docker.build:dktest . '
-                }
-            }
-        }
-    }
+					sh 'docker build -t docker.build:dktest . '
+				}	
+			}
+		}
+	}
     stage("docker push") {
             steps {
-                echo " ============== start pushing image =================="
-                sh '''docker.build:dktest'''
-            }
-        }
+	    	echo " ============== start pushing image =================="
+		sh '''docker.build:dktest'''
+		}
+	}
 }
+
