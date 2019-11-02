@@ -30,7 +30,7 @@ pipeline {
     	stage("docker push") {
 		steps {
 			echo " ============== start pushing image =================="
-				sh '''docker push https://cloud.docker.com/repository/docker/aceakmoon/all.images/docker.build:dktest'''
+				sh '''docker push cloud.docker.com/repository/docker/aceakmoon/all.images/docker.build:dktest'''
 		}
 	}
     }
