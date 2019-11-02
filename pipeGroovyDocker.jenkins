@@ -23,14 +23,14 @@ pipeline {
 		steps {
                 	echo " ============ start building image ============ "
                 	dir ('DockerBox/awscli') {
-				sh 'docker build -t docker.build:dktest . '
+				sh 'docker build -t aceakmoon/docker.build:dktest . '
 			}	
 		}
 	}
     	stage("docker push") {
 		steps {
 			echo " ============== start pushing image =================="
-				sh '''docker push docker.build:dktest'''
+				sh '''docker push aceakmoon/docker.build:dktest'''
 		}
 	}
     }
