@@ -15,26 +15,24 @@ pipeline {
 			echo " ============== docker login =============== "
 			withCredentials([usernamePassword(credentialsId: 'dockerhub_aceakmoon', \
 			usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-					sh """docker login -u $USERNAME -p $PASSWORD"""
-				}
+				sh """docker login -u $USERNAME -p $PASSWORD"""
 			}
 		}
 	}
-    stages {
         stage("create docker image") {
-            steps {
-                echo " ============ start building image ============ "
-                dir ('DockerBox/awscli') {
-					sh 'docker build -t docker.build:dktest . '
-				}	
-			}
+		steps {
+                	echo " ============ start building image ============ "
+                	dir ('DockerBox/awscli') {
+				sh 'docker build -t docker.build:dktest . '
+			}	
 		}
 	}
-    stage("docker push") {
-            steps {
-	    	echo " ============== start pushing image =================="
-		sh '''docker.build:dktest'''
+    	stage("docker push") {
+		steps {
+			echo " ============== start pushing image =================="
+				sh '''docker.build:dktest'''
 		}
 	}
+    }
 }
 
